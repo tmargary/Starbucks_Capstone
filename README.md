@@ -20,4 +20,4 @@ In order to make the recommendations, I have created a `user_item` matrix and fo
 ## Resources
 - **Python Version:** 3.8<br/>
 - **Packages:** pandas, numpy, json, math, seaborn </br>
-- **Data Source:** Starbucks</br>
+- **Data Source:** Starbucks (by Udacity's Udacity Data Scientist Nanodegree Program)</br>
