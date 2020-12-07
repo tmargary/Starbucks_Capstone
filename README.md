@@ -6,8 +6,8 @@ Combined transaction, demographic and offer data to make a recommendation system
 
 ## EDA
 
-![](https://github.com/tmargary/disaster_response_pipelines/blob/master/deployment_screenshots/3.png)
-![](https://github.com/tmargary/disaster_response_pipelines/blob/master/deployment_screenshots/3.png)
+![](https://github.com/tmargary/Starbucks_Capstone/blob/main/graphs/age.png)
+![](https://github.com/tmargary/Starbucks_Capstone/blob/main/graphs/offer_type.png)
 
 ## Metrics
 
