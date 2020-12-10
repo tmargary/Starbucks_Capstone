@@ -24,7 +24,9 @@ The first thing I have done was mapping the cyphered ID's (`744d603ef08c4f33af5a
 After cleaning the dataset and exploring some details, I have built user matrix factorization to make offer recommendations to the users. I have used Singular Value Decomposition from numpy on the user-item matrix: u, s, vt = np.linalg.svd(order_received_mat).</br>
 In order to minimize the prediction error, we have to choose the number of latent features.</br></br>
 ![](https://github.com/tmargary/Starbucks_Capstone/blob/main/graphs/Screenshot_6.png)</br>
-As it is obvious from the graph, when `k` equals 10, we have the least amount of error (`0.0`).
+As it is obvious from the graph, when `k` equals 10, we have the least amount of error (`0.0`).</br>
+
+The final output of the model is also a list that contains the offer ID's that should be recommended to the user. The results look like this: "`The user 14530 will get the following offers: [5.0, 7.0, 10.0]`".</br>
 
 ## Model Evaluation and Validation
 According to Udacity, "from the above, we can't really be sure how many features to use, because simply having a better way to predict the 1's and 0's of the matrix doesn't exactly give us an indication of if we are able to make good recommendations. Instead, we might split our dataset into a training and test set of data."</br>
@@ -35,7 +37,17 @@ In order to make the recommendations, I have created a user_item matrix and foun
 
 I have created the user-offer matrix with 1's and 0's which I will use later for finding similar users.</br>
 
-The result of similar users is a list, such as "`The 3 most similar users to user 14530 are: [1, 8, 11]`."
+The result of similar users is a list, such as "`The 3 most similar users to user 14530 are: [1, 8, 11]`."</br>
+
+## Conclusion
+
+This is a good start that can be used for creating a recommendation engine and integrating it in the Starbucks app. Since the dataset includes only 10 offers, it would be interesting to see how the model behaves when a larger dataset is provided.</br>
+
+Using User-User Based Collaborative Filtering, I have managed to make recommendations for almost all the customers in my test data frame. Next, I have found out that I still have two users that need recommendations. To solve the issue, I have found similar users. As a result, the model covers all the 17000 customers in the dataset.</br>
+
+To make the recommendations more relevant to the users, we might as well consider more demographic data about the customers to build a more complex engine. Also, it is also important to consider factors, such as relevance, novelty, serendipity, increased diversity to increase the quality of the recommendations.</br>
+
+A logical next step should be A/B testing to see how successful the model behaves in reality.</br>
 
 ## Resources
 - **Python Version:** 3.8<br/>
