@@ -22,8 +22,9 @@ The first thing I have done was mapping the cyphered ID's (744d603ef08c4f33af5a6
 
 ## SVD
 After cleaning the dataset and exploring some details, I have built user matrix factorization to make offer recommendations to the users. I have used Singular Value Decomposition from numpy on the user-item matrix: u, s, vt = np.linalg.svd(order_received_mat).</br>
-In order to minimize the prediction error, we have to choose the number of latent features.
+In order to minimize the prediction error, we have to choose the number of latent features.</br>
 ![](https://github.com/tmargary/Starbucks_Capstone/blob/main/graphs/Screenshot_6.png)
+As it is obvious from the graph, when k equals 10, we have the least amount of error (0.0).
 
 ## Resources
 - **Python Version:** 3.8<br/>
