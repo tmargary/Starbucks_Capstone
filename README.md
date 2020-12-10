@@ -26,6 +26,17 @@ In order to minimize the prediction error, we have to choose the number of laten
 ![](https://github.com/tmargary/Starbucks_Capstone/blob/main/graphs/Screenshot_6.png)</br>
 As it is obvious from the graph, when `k` equals 10, we have the least amount of error (`0.0`).
 
+## Model Evaluation and Validation
+According to Udacity, "from the above, we can't really be sure how many features to use, because simply having a better way to predict the 1's and 0's of the matrix doesn't exactly give us an indication of if we are able to make good recommendations. Instead, we might split our dataset into a training and test set of data."</br>
+
+At this point, we have two users that do not have recommendations yet. To make further recommendations for them, I have found similar users to them using the dot product between users. While building the functions, I have assumed that in case the user has accepted all the 10 offers, the customer is a loyal customer and does not need any offers in the short to medium term. On the other hand, if the customer has viewed all of the offers without receiving them, there is no need to continue the recommendations in the short to medium term.</br>
+
+In order to make the recommendations, I have created a user_item matrix and found similar_users for each user. Then I got the recommendations and filtered out already accepted and not received offers.</br>
+
+I have created the user-offer matrix with 1's and 0's which I will use later for finding similar users.</br>
+
+The result of similar users is a list, such as "`The 3 most similar users to user 14530 are: [1, 8, 11]`."
+
 ## Resources
 - **Python Version:** 3.8<br/>
 - **Packages:** pandas, numpy, json, math, seaborn </br>
