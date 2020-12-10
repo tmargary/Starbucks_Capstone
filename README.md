@@ -21,3 +21,4 @@ In order to make the recommendations, I have created a `user_item` matrix and fo
 - **Python Version:** 3.8<br/>
 - **Packages:** pandas, numpy, json, math, seaborn </br>
 - **Data Source:** Starbucks (by Udacity's Udacity Data Scientist Nanodegree Program)</br>
+- **Code Source for SVD:** Udacity's Recommendations_with_IBM
