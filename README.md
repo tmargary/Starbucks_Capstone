@@ -13,7 +13,7 @@ Offers sent during the 30-day test period (10 offers x 6 fields)<br/>
 - transcript.json<br/>
 Event log (306648 events x 4 fields)<br/>
 
-The first thing I have done was mapping the cyphered ID's (744d603ef08c4f33af5a61c8c7628d1c) data with numbers (123). Next, after merging the tables, I have generated additional columns for channels of Starbucks marketing and calculated the membership length.
+The first thing I have done was mapping the cyphered ID's (`744d603ef08c4f33af5a61c8c7628d1c`) data with numbers (`123`). Next, after merging the tables, I have generated additional columns for channels of Starbucks marketing and calculated the membership length.
 
 ## EDA
 
@@ -24,7 +24,7 @@ The first thing I have done was mapping the cyphered ID's (744d603ef08c4f33af5a6
 After cleaning the dataset and exploring some details, I have built user matrix factorization to make offer recommendations to the users. I have used Singular Value Decomposition from numpy on the user-item matrix: u, s, vt = np.linalg.svd(order_received_mat).</br>
 In order to minimize the prediction error, we have to choose the number of latent features.</br></br>
 ![](https://github.com/tmargary/Starbucks_Capstone/blob/main/graphs/Screenshot_6.png)</br>
-As it is obvious from the graph, when k equals 10, we have the least amount of error (0.0).
+As it is obvious from the graph, when `k` equals 10, we have the least amount of error (`0.0`).
 
 ## Resources
 - **Python Version:** 3.8<br/>
