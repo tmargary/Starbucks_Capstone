@@ -6,8 +6,8 @@ Combined transaction, demographic and offer data to make a recommendation system
 
 ## EDA
 
-![](https://github.com/tmargary/disaster_response_pipelines/blob/master/deployment_screenshots/3.png)
-![](https://github.com/tmargary/disaster_response_pipelines/blob/master/deployment_screenshots/3.png)
+![](https://github.com/tmargary/Starbucks_Capstone/blob/main/graphs/age.png)
+![](https://github.com/tmargary/Starbucks_Capstone/blob/main/graphs/offer_type.png)
 
 ## Metrics
 
@@ -18,7 +18,6 @@ I have calculated the number of users that I can make reccommendations for with 
 In order to make the recommendations, I have created a `user_item` matrix and found `similar_users` for each user. Then I got the recommendations and filtered out `already accepted` and  `not received` offers.
 
 ## Resources
-Mentorship: Udacity team. Special thanks to Rajat P.</br>
-Python Version: 3.8</br>
-Packages: pandas, numpy, json, math, seaborn </br>
-Data Source: Figure Eight</br>
+- **Python Version:** 3.8<br/>
+- **Packages:** pandas, numpy, json, math, seaborn </br>
+- **Data Source:** Starbucks (by Udacity's Udacity Data Scientist Nanodegree Program)</br>
