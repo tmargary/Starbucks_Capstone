@@ -101,7 +101,7 @@ For a company like Starbucks, it's also crucial to have a scalable solution, and
 
 A logical next step should be A/B testing to see how successful the model behaves in reality.
 
-## Resources
+## `7` Resources
 - **Python Version:** 3.8<br/>
 - **Packages:** pandas, numpy, json, math, seaborn </br>
 - **Data Source:** Starbucks (by Udacity's Udacity Data Scientist Nanodegree Program)</br>
