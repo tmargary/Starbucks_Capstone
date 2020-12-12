@@ -8,17 +8,6 @@ To achieve this, I will be using singular value decomposition (SVD), the most co
 
 Note: I have assumed that in case the user has accepted all the 10 offers, the customer is a loyal customer and does not need any offers in the short to medium term. On the other hand, if the customer has viewed all of the offers without receiving them, there is no need to continue the recommendations in the short to medium term.
 
-## Data Cleaning
-The Starbucks Capstone Challenge by Udacity was a great challenge to develop data cleaning skills. The challenge provides three datasets:<br/>
-- profile.json<br/>
-Rewards program users (17000 users x 5 fields)<br/>
-- portfolio.json<br/>
-Offers sent during the 30-day test period (10 offers x 6 fields)<br/>
-- transcript.json<br/>
-Event log (306648 events x 4 fields)<br/>
-
-The first thing I have done was mapping the cyphered ID's (`744d603ef08c4f33af5a61c8c7628d1c`) data with numbers (`123`). Next, after merging the tables, I have generated additional columns for channels of Starbucks marketing and calculated the membership length.
-
 ## `1` Data Cleaning
 
 I have started the cleaning process by mapping the cyphered ID's (`744d603ef08c4f33af5a61c8c7628d1c`) data with numbers (`123`). I have done this by the `column_mapper` function below. 
@@ -39,39 +28,78 @@ After merging all three semi-clean datasets together, I have generated additiona
 
 An interesting thing that I have learned from this part of the cleaning was that `np.nan` is not the same as the pandas' `nan`. So I had to use something like this: `pd.isna(x[column]) == pd.isna(np.nan)` for making a comparison in one of the lambda functions below.
 
-## EDA
+## `2` EDA
 
 ![](https://github.com/tmargary/Starbucks_Capstone/blob/main/graphs/age.png)
 ![](https://github.com/tmargary/Starbucks_Capstone/blob/main/graphs/offer_type.png)
 
-## SVD
-After cleaning the dataset and exploring some details, I have built user matrix factorization to make offer recommendations to the users. I have used Singular Value Decomposition from numpy on the user-item matrix: u, s, vt = np.linalg.svd(order_received_mat).</br>
-In order to minimize the prediction error, we have to choose the number of latent features.</br></br>
-![](https://github.com/tmargary/Starbucks_Capstone/blob/main/graphs/Screenshot_6.png)</br>
-As it is obvious from the graph, when `k` equals 10, we have the least amount of error (`0.0`).</br>
+## `3` User-User Based Collaborative Filtering
 
-The final output of the model is also a list that contains the offer ID's that should be recommended to the user. The results look like this: "`The user 14530 will get the following offers: [5.0, 7.0, 10.0]`".</br>
+`3.1` After cleaning the dataset and exploring some details, I will build user matrix factorization to make offer recommendations to the users.
 
-## Model Evaluation and Validation
-According to Udacity, "from the above, we can't really be sure how many features to use, because simply having a better way to predict the 1's and 0's of the matrix doesn't exactly give us an indication of if we are able to make good recommendations. Instead, we might split our dataset into a training and test set of data."</br>
+I will be using SVD, a traditional approach to matrix factorization. To perform SVD, I will be creating a **user_item** matrix and split it into three matrices:
 
-At this point, we have two users that do not have recommendations yet. To make further recommendations for them, I have found similar users to them using the dot product between users. While building the functions, I have assumed that in case the user has accepted all the 10 offers, the customer is a loyal customer and does not need any offers in the short to medium term. On the other hand, if the customer has viewed all of the offers without receiving them, there is no need to continue the recommendations in the short to medium term.</br>
+$$ U \Sigma V^T $$
 
-In order to make the recommendations, I have created a user_item matrix and found similar_users for each user. Then I got the recommendations and filtered out already accepted and not received offers.</br>
+I will use `numpy`'s `linalg.svd()` function to get these components. 
+It has the following dimensions:
 
-I have created the user-offer matrix with 1's and 0's which I will use later for finding similar users.</br>
+$$ U_{n x k} $$
 
-The result of similar users is a list, such as "`The 3 most similar users to user 14530 are: [1, 8, 11]`."</br>
+$$\Sigma_{k x k} $$
 
-## Conclusion
+$$V^T_{k x m} $$
 
-This is a good start that can be used for creating a recommendation engine and integrating it in the Starbucks app. Since the dataset includes only 10 offers, it would be interesting to see how the model behaves when a larger dataset is provided.</br>
+where:
 
-Using User-User Based Collaborative Filtering, I have managed to make recommendations for almost all the customers in my test data frame. Next, I have found out that I still have two users that need recommendations. To solve the issue, I have found similar users. As a result, the model covers all the 17000 customers in the dataset.</br>
+1. n is the number of Starbucks customers
+2. k is the number of latent features to keep (10 for this case)
+3. m is the number of offers
 
-To make the recommendations more relevant to the users, we might as well consider more demographic data about the customers to build a more complex engine. Also, it is also important to consider factors, such as relevance, novelty, serendipity, increased diversity to increase the quality of the recommendations.</br>
+I have chosen SVD as an algorithm behind my recommender system because it can incorporate implicit information that’s not directly given in the dataset but can be derived by looking at the offers frequently received or completed. Using this capability we can estimate wheather a user is going to accept the offer. If the prediction is 1, we should send the offer. Compared to other methods, SVD is especially useful because it's easy to explain how it works and general audience of business executives can easily understand the gist of how the technique works.
 
-A logical next step should be A/B testing to see how successful the model behaves in reality.</br>
+**Metric to measure performance**: To minimize the prediction error, I have to choose the number of latent features and calculate the error rate. As an essential metric, I will also look at the number of customers that are left without recommendations.
+
+## `4` Refinement
+
+In the earlier stages of the project, I was trying to do exploratory data analysis to find a deeper connection between the customers' demographics and the offers that they accept. After some attempts, I understood that the best approach to do this would be neural networks, and I did not intend to go with this path because the dataset might not be big enough for that approach. My goal was to deepen my knowledge in the recommender systems, and this was an excellent opportunity to try solving the Starbucks problem from that perspective.
+
+Initially, I manually selected an arbitrary number of `k` (latent factors) to calculate the error. I wanted to keep the `k` as small as possible to make the solution more scalable for later use. After visualizing the error rate vs. `k`, I have chosen 10 as the most optimal number for the problem.
+
+When I realized that I still have 2 users that do not have any recommendations, I have tried to recommend them the most popular offer in the dataset. After doing more EDA of the dataset, I came to the conclusion that the popularity of the offers does not vary significantly. So I have built another function that finds similar users and makes recommendations accordingly.
+
+In real life, the number of offers is going to be more, and most probably, there are going to be some offers that are more popular than others, and having that information will be particularly helpful for brand new customers (also known as the cold start problem) who will join Starbucks in the future.
+
+## `5` Final results
+
+After cleaning the dataset and doing some exploratory data analysis, I have used SVD to make recommendations for the customers that we have in the dataset. The result of SVD was a matrix where the rows represent the cutomers, the columns represent the offers, and 1's and 0's indicate whether or not the offer should be extended. 
+
+Since the matrix doesn't exactly give us an indication of if we are able to make good recommendations, 
+
+So, eseentially we ended up learning the $ U \Sigma V^T $ components of the following matrix:
+
+| 1 | 2 | 3 | ... | 8 | 9 | 10 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 0 | 0 | 0 |... |  0 | 0 | 1 |
+| 0 | 0 | 1 | ... |  0 | 0 | 0 |
+|  0 | 0 | 0 |... |  1 |  0 | 0 |
+|  0 | 0 | 1 | ... |  1 |  0 | 0 |
+|  1 |  1 |  0 |... |  0 | 0 | 0 |
+|  0 | 0 | 1 | ... |  0 | 1 |  0 |
+
+These components will later be used for making recommendations for the customer, but now to find out how well the model is doing so, I have split the dataset into training and test sets. I have calculated the number of users that are left out without any recommendation and by using the similarity technique I have managed to make similarity based recommendations to these users.
+
+Using the learned matrices, now we can use the user_user_recs() function to get recommendations for a specific user. As a result of using the techniques that are detailed above, the recommendation model covers all the 17000 customers in the dataset.
+
+One possible usage of the model in real world might be integrating the model with the Starbucks app, which will later predict potential offers for the user and recommend them. After a while of collecting more data, we can re-evaluate the performance of the model and make necessary adjustments.
+
+## `6` Improvement
+
+This is a good start that can be used for creating a recommendation engine and integrating it in the Starbucks app. To make the recommendations more relevant for the users, we might as well consider more demographic data about the customers to build a more complex engine. It is also essential to consider factors such as relevance, novelty, serendipity and increased diversity to increase the quality of the recommendations. Since the dataset includes only 10 offers, it would be interesting to see how the model behaves when a larger dataset is provided.
+
+For a company like Starbucks, it's also crucial to have a scalable solution, and as such, the cleaning process of the dataset should be optimized, and the number of `k` latent factors might be reduced to decrease the computational complexity.  
+
+A logical next step should be A/B testing to see how successful the model behaves in reality.
 
 ## Resources
 - **Python Version:** 3.8<br/>
