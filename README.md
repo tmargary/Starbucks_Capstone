@@ -1,8 +1,12 @@
 # Starbucks Capstone Project
 
-## Project Overview
+## `0` Project Overview
 
-I have combined transaction, demographic, and offer data to make a recommendation system for Starbucks customers. The goal of the project is to build a user-based recommendation system that identifies users that are similar to the queried user and makes recommendations, excluding the offers that have already been received or viewed without an interaction. I have assumed that in case the user has accepted all the 10 offers, the customer is a loyal customer and does not need any offers in the short to medium term. On the other hand, if the customer has viewed all of the offers without receiving them, there is no need to continue the recommendations in the short to medium term.
+The goal of the project is to build a user-based recommendation system that identifies users that are similar to each other and makes recommendations, excluding the offers that have already been received or viewed without an interaction.
+
+To achieve this, I will be using singular value decomposition (SVD), the most common method in collaborative filtering where it relies on te past user-item data. In case of missing recommendations for certain users, I will find similar users based on their dot product and recommend the offers accordingly. The expected solution is to recommend at least one offer to the 1700 usrers that we have in the dataset, as well as evaluate how well the model works.
+
+Note: I have assumed that in case the user has accepted all the 10 offers, the customer is a loyal customer and does not need any offers in the short to medium term. On the other hand, if the customer has viewed all of the offers without receiving them, there is no need to continue the recommendations in the short to medium term.
 
 ## Data Cleaning
 The Starbucks Capstone Challenge by Udacity was a great challenge to develop data cleaning skills. The challenge provides three datasets:<br/>
@@ -14,6 +18,26 @@ Offers sent during the 30-day test period (10 offers x 6 fields)<br/>
 Event log (306648 events x 4 fields)<br/>
 
 The first thing I have done was mapping the cyphered ID's (`744d603ef08c4f33af5a61c8c7628d1c`) data with numbers (`123`). Next, after merging the tables, I have generated additional columns for channels of Starbucks marketing and calculated the membership length.
+
+## `1` Data Cleaning
+
+I have started the cleaning process by mapping the cyphered ID's (`744d603ef08c4f33af5a61c8c7628d1c`) data with numbers (`123`). I have done this by the `column_mapper` function below. 
+
+The next thing that I have done was to separate the `value` column in the `transcript` dataset. Initially, the column contained values, such as:
+
+
+| value |
+| --- |
+|{'offer id': '9b98b8c7a33c4b65b9aebfe6a799e6d9'}|
+|{'amount': 4.89}|
+|{'amount': 4.23, 'offer id': 'f19421c1d4aa40978ebb69ca19b0e20d'}|
+|...|
+
+I have broken down these values based on their key-value pairs and created a new column for each key. Next, I have solved the anomaly of having `offer id` and `offer_id` as different keys. I made sure that these values are included in the same column.
+
+After merging all three semi-clean datasets together, I have generated additional columns for the marketing channels and calculated the membership length as a new column.
+
+An interesting thing that I have learned from this part of the cleaning was that `np.nan` is not the same as the pandas' `nan`. So I had to use something like this: `pd.isna(x[column]) == pd.isna(np.nan)` for making a comparison in one of the lambda functions below.
 
 ## EDA
 
