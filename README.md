@@ -100,7 +100,7 @@ This is a good start that can be used for creating a recommendation engine and i
 
 For a company like Starbucks, it's also crucial to have a scalable solution, and as such, the cleaning process of the dataset should be optimized, and the number of `k` latent factors might be reduced to decrease the computational complexity.  
 
-A logical next step should be A/B testing to see how successful the model behaves in reality.
+A logical next step should be A/B testing to see how successful the model behaves in reality. 
 
 ## `7` Resources
 - **Python Version:** 3.8<br/>
