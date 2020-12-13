@@ -39,16 +39,16 @@ An interesting thing that I have learned from this part of the cleaning was that
 
 I will be using SVD, a traditional approach to matrix factorization. To perform SVD, I will be creating a **user_item** matrix and split it into three matrices:
 
-$$ U \Sigma V^T $$
+<img src="https://render.githubusercontent.com/render/math?math=U \Sigma V^T">
 
 I will use `numpy`'s `linalg.svd()` function to get these components. 
 It has the following dimensions:
 
-$$ U_{n x k} $$
+<img src="https://render.githubusercontent.com/render/math?math=U_{n x k}">
 
-$$\Sigma_{k x k} $$
+<img src="https://render.githubusercontent.com/render/math?math=\Sigma_{k x k}">
 
-$$V^T_{k x m} $$
+<img src="https://render.githubusercontent.com/render/math?math=V^T_{k x m}">
 
 where:
 
