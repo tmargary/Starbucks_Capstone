@@ -90,7 +90,7 @@ So, eseentially we ended up learning the <img src="https://render.githubusercont
 
 These components will later be used for making recommendations for the customer, but now to find out how well the model is doing so, I have split the dataset into training and test sets. I have calculated the number of users that are left out without any recommendation and by using the similarity technique I have managed to make similarity based recommendations to these users.
 
-Using the learned matrices, now we can use the user_user_recs() function to get recommendations for a specific user. As a result of using the techniques that are detailed above, the recommendation model covers all the 17000 customers in the dataset.
+Using the learned matrices, now we can use the `user_user_recs()` function to get recommendations for a specific user. As a result of using the techniques that are detailed above, the recommendation model covers all the 17000 customers in the dataset.
 
 One possible usage of the model in real world might be integrating the model with the Starbucks app, which will later predict potential offers for the user and recommend them. After a while of collecting more data, we can re-evaluate the performance of the model and make necessary adjustments.
 
