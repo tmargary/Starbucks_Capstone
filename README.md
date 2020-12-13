@@ -76,7 +76,7 @@ After cleaning the dataset and doing some exploratory data analysis, I have used
 
 Since the matrix doesn't exactly give us an indication of if we are able to make good recommendations, 
 
-So, eseentially we ended up learning the $ U \Sigma V^T $ components of the following matrix:
+So, eseentially we ended up learning the <img src="https://render.githubusercontent.com/render/math?math=U \Sigma V^T"> components of the following matrix:
 
 | 1 | 2 | 3 | ... | 8 | 9 | 10 |
 | --- | --- | --- | --- | --- | --- | --- |
