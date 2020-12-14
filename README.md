@@ -4,7 +4,7 @@
 
 The goal of the project is to build a user-based recommendation system that identifies users that are similar to each other and makes recommendations, excluding the offers that have already been received or viewed without an interaction.
 
-To achieve this, I will be using singular value decomposition (SVD), the most common method in collaborative filtering where it relies on te past user-item data. In case of missing recommendations for certain users, I will find similar users based on their dot product and recommend the offers accordingly. The expected solution is to recommend at least one offer to the 1700 usrers that we have in the dataset, as well as evaluate how well the model works.
+To achieve this, I will be using singular value decomposition (SVD), the most common method in collaborative filtering where it relies on the past user-item data. In case of missing recommendations for certain users, I will find similar users based on their dot product and recommend the offers accordingly. The expected solution is to recommend at least one offer to the 1700 usrers that we have in the dataset, as well as evaluate how well the model works.
 
 Note: I have assumed that in case the user has accepted all the 10 offers, the customer is a loyal customer and does not need any offers in the short to medium term. On the other hand, if the customer has viewed all of the offers without receiving them, there is no need to continue the recommendations in the short to medium term.
 
