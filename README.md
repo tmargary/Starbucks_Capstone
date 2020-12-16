@@ -85,8 +85,7 @@ So, eseentially we ended up learning the <img src="https://render.githubusercont
 | 3 |  0 | 0 | 0 | ... |  1 |  0 | 0 |
 | 4 |  0 | 0 | 1 | ... |  1 |  0 | 0 |
 | 5 |  1 |  1 |  0 | ... |  0 | 0 | 0 |
-| 6 |  0 | 0 | 1 | ... |  0 | 1 |  0 |
-| ... | ... | ... | ... | ... | ... | ... |
+| ... | ... | ... | ... | ... | ... | ... | ... |
 
 These components will later be used for making recommendations for the customer, but now to find out how well the model is doing so, I have split the dataset into training and test sets. I have calculated the number of users that are left out without any recommendation and by using the similarity technique I have managed to make similarity based recommendations to these users.
 
