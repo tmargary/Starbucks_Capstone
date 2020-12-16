@@ -72,7 +72,7 @@ In real life, the number of offers is going to be more, and most probably, there
 
 ## `5` Final results
 
-After cleaning the dataset and doing some exploratory data analysis, I have used SVD to make recommendations for the customers that we have in the dataset. The result of SVD was a matrix where the rows represent the cutomers, the columns represent the offers, and 1's and 0's indicate whether or not the offer should be extended. 
+After cleaning the dataset and doing some exploratory data analysis, I have used SVD to make recommendations for the customers that we have in the dataset. The result of SVD was a matrix where the rows represent the cutomers, the columns represent the offers, and `1`'s and `0`'s indicate whether or not the offer should be extended. 
 
 Since the matrix doesn't exactly give us an indication of if we are able to make good recommendations, 
 
