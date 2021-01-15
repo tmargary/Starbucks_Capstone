@@ -1,4 +1,4 @@
-# Starbucks Capstone Project
+# The Starbucks Project
 
 ## `0` Project Overview
 
