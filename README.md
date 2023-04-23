@@ -30,8 +30,8 @@ An interesting thing that I have learned from this part of the cleaning was that
 
 ## `2` EDA
 
-![](https://github.com/tmargary/Starbucks_Capstone/blob/main/graphs/age.png)
-![](https://github.com/tmargary/Starbucks_Capstone/blob/main/graphs/offer_type.png)
+![](https://github.com/tmargary/Starbucks_Capstone/blob/main/graphs/age.jpg)
+![](https://github.com/tmargary/Starbucks_Capstone/blob/main/graphs/offer_type.jpg)
 
 ## `3` User-User Based Collaborative Filtering
 
